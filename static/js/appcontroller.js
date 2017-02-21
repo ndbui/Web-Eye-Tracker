@@ -15,5 +15,4 @@ var AppController = React.createClass({
   }
 });
 
-
 ReactDOM.render(<AppController />, document.getElementById('mainthing'));
