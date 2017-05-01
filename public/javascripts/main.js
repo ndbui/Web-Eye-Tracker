@@ -45,7 +45,7 @@ $(document).ready(function() {
       webgazer.setRegression('ridge') /* currently must set regression and tracker */
           .setTracker('clmtrackr')
           .begin()
-          //.showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+          .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
     }
 
     function experimentStart(){
