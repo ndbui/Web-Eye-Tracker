@@ -4,12 +4,20 @@ $(document).ready(function() {
     document.getElementById("startExperiment").addEventListener('click',experimentStart,false);
     document.getElementById("myVideo").addEventListener('ended',mediaEndHandler,false);
 
-    var csvData = [$(window).width(),$(window).height(),0];
+    //Unguided calibration
+    // webgazer.setRegression('ridge') /* currently must set regression and tracker */
+    //     .setTracker('clmtrackr')
+    //     .begin()
+    //     .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+
+    var csvData = [[$(window).width(),$(window).height(),0]];
+
 
     function download_csv() {
         var csv = 'X,Y,Time\n';
         csvData.forEach(function(row) {
-                csv += row.join(',');
+                var args = Array.prototype.slice.call(row);
+                csv += args.join(',');
                 csv += "\n";
         });
 
@@ -56,10 +64,7 @@ $(document).ready(function() {
       webgazer.setRegression('ridge') /* currently must set regression and tracker */
           .setTracker('clmtrackr')
           .begin()
-          .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */
           .setGazeListener(function(data, clock) {
-          console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-          console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
           if(data){
             csvData.push([data.x,data.y,clock]);
           }
