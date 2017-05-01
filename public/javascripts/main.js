@@ -70,7 +70,7 @@ $(document).ready(function() {
           else{
             csvData.push([0,0,0]);
           }
-      });
+      }).showPredictionPoints(false);;
     }
 
     function mediaEndHandler(e) {
