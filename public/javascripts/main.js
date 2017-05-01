@@ -45,7 +45,7 @@ $(document).ready(function() {
       webgazer.setRegression('ridge') /* currently must set regression and tracker */
           .setTracker('clmtrackr')
           .begin()
-          .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+          //.showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
     }
 
     function experimentStart(){
@@ -61,13 +61,12 @@ $(document).ready(function() {
       myVideo.play();
 
       //Start taking in data points from the webcam eye tracker and outputing them into a csv
-      webgazer.setRegression('ridge') /* currently must set regression and tracker */
-          .setTracker('clmtrackr')
-          .begin()
-          .setGazeListener(function(data, clock) {
+      webgazer.setGazeListener(function(data, clock) {
           if(data){
             csvData.push([data.x,data.y,clock]);
           }
+
+          //If the webcam eye tracker does not have a prediction for where the eyes are insert 0,0,0
           else{
             csvData.push([0,0,0]);
           }
