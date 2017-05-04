@@ -22,3 +22,4 @@ The python programs used were run on Anaconda 2.7
 8.) A folder will be created in the Results folder containing all of the heatmap images as well as the heatmaps in mp4 format under timelapse.mp4.
 
 9.) You can uncomment out the code at the bottom of maketimelapse_server.py in order to automatically create an overlay of the heatmaps over the experiment video once the heatmaps have been created but the process takes a bit of time to complete.
+
