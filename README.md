@@ -7,6 +7,8 @@ The python programs used were run on Anaconda 2.7
 
 1.) Install Node
 
+2.) Run "pip install bottle"
+
 2.) Navigate into the Web-Eye-Tracker folder and run "npm install express"
 
 3.) Navigate into the public folder
