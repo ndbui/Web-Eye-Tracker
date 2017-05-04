@@ -18,13 +18,15 @@ pts = []
 mod = 0
 counter = 0
 imgno = 0
+windowWidth = 1600;
+windowHeight = 900;
 
 #Generate heatmaps over time intervals of a second
 with open('GJ.csv', 'r') as csvfile:
     freader = csv.reader(csvfile)
     r1 = next(freader)
     r2 = next(freader)
-    mysize = [1600,900]
+    mysize = [windowWidth,windowHeight]
     mysize = map(int, mysize)
     mysize = tuple(mysize)
     for row in freader:
@@ -37,14 +39,16 @@ with open('GJ.csv', 'r') as csvfile:
         ys.sort()
         #print xs[1], mysize[1]-ys[1]
         pts.append([xs[1],mysize[1]-ys[1]])
-        if counter%25==0: #50 for interval of a second, 25 for half second
+        if counter%30==0: #50 for interval of a second, 25 for half second
             imgno += 1
             img = hm.heatmap(pts, size = mysize, area = ((0,0), mysize), dotsize=75) #scale dotsize up?
             img.save(folderpath+ "/imgs/hm" + str(imgno) + ".png")
             pts = []
-imgno += 1
-img = hm.heatmap(pts, size = mysize, area = ((0,0), mysize), dotsize=75)
-img.save(folderpath + "/imgs/hm" + str(imgno) + ".png")
+
+if len(pts) > 0:
+    imgno += 1
+    img = hm.heatmap(pts, size = mysize, area = ((0,0), mysize), dotsize=75)
+    img.save(folderpath + "/imgs/hm" + str(imgno) + ".png")
 
 #Generate timelapse video
 print "Making timelapse..."

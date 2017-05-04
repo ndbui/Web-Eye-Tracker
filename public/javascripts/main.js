@@ -22,12 +22,13 @@ $(document).ready(function() {
         });
 
         console.log("Creating csv");
-        console.log(csv);
-        var hiddenElement = document.createElement('a');
-        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-        hiddenElement.target = '_blank';
-        hiddenElement.download = 'ExperimentData.csv';
-        hiddenElement.click();
+        //var hiddenElement = document.createElement('a');
+        $.post('http://localhost:8080', {data: csv});
+
+        // hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+        // hiddenElement.target = '_blank';
+        // hiddenElement.download = 'ExperimentData.csv';
+        // hiddenElement.click();
     }
 
     function calibrateStart(){
@@ -42,7 +43,7 @@ $(document).ready(function() {
       myVideo.play();
 
       //Start the webgazer eye tracker and start calibrating
-      webgazer.setRegression('ridge') /* currently must set regression and tracker */
+      webgazer.setRegression('ridge')
           .setTracker('clmtrackr')
           .begin()
           .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
